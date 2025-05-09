@@ -1,8 +1,9 @@
-<?php
+<!-- Talvez não seja necessário... -->
 
+<!-- 
 class Boletim{
     private $grade;
-
+    
     public function __construct($grade)
     {
         $this->grade = $grade;
@@ -12,4 +13,5 @@ class Boletim{
     {
         return $this->grade;
     }
-}
+} 
+-->

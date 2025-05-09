@@ -1,11 +1,14 @@
 <?php
 
-
 require_once "./student.php";
+
+$grades = [];
+$students = [];
+
 do{
     echo "\rSistema de Boletim\n\n";
 
-    echo "Menu: \n\n";
+    echo "Menu: \n";
     
     echo "1- Adicionar aluno.\n2- Mostrar alunos.\n";
     
@@ -16,20 +19,42 @@ do{
         case 1:
             echo "\t\t\tDados do aluno:\n\n";
             $studentName = readline("Nome: ");
-            $studentRM = readline("RM: ");
+            $studentRm = readline("RM: ");
             $studentEmail = readline("Email: ");
             
             
 
+            $student = new Student($studentName, $studentRm, $studentEmail);
+            $students[] = $student;
+      
             echo "Aluno adicionado.\n\n";
+            
+            echo "Informe as notas:\n";
+            $firstEx = readline("Primeira atividade: ");
+            $secondEx = readline("Segunda atividade: ");
+            $thirdEx = readline("Terceira atividade: ");
+            
+            $student->setGrades($firstEx, $secondEx, $thirdEx);  
+            $grades[$student->getRm()] = $student->getGrades();
+
             readline("Pressione qualquer tecla...");
             break;
         
         case 2:
-            echo "aluno tal\nAluno tal\n";
+
+            foreach($students as $student){
+                echo $student->getName();
+
+                $notasSomadas = 0; 
+                foreach($student->getGrades() as $grade){
+                    $notasSomadas += $grade;
+                }
+                echo "\nMedia: " . $notasSomadas / count($student->getGrades()) .  "\n\n";
+            }
+
             readline("Pressione qualquer tecla...\n\n");
             break;
-        
+            
         default:
             echo "Fechando Programa...";
     }
