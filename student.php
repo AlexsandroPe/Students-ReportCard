@@ -27,6 +27,7 @@ class Student {
     {
         return $this->email;
     }
+
     public function getGrades()
     {
         return $this->grades;   
